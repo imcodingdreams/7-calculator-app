@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Calculator</h1>
+    <div id="mathOperationDisplay" class="math-operation-display" >
+      <div id="firstOperand"></div>
+      <div id="operator"></div>
+      <div id="secondOperand"></div>
+    </div>
+  </header>
+  <div class="calculator-container">
+    <div class="calculator-container-2">
+      <div id="ceBtnContainer" class="ce-container">
+        <div>
+          <button id="ceBtn" class="ce-btn">CE</button>
+        </div>
+        <div id="intDisplayContainer" class="int-display-container">
+          <div id="calcDisplayFirstOperand"></div>
+          <div id="calcDisplayOperator"></div>
+          <div id="calcDisplaySecondOperand"></div>
+        </div>
+      </div>
+      <div class="btns-container">
+        <div class = "memory-btns-container">
+          <button id="mAddBtn" class="memory-btn">M+</button>
+          <button id="mSubtBtn" class="memory-btn">M-</button>
+          <button id="mReCallBtn" class="memory-btn">MR</button>
+          <button id="mClearBtn" class="memory-btn">MC</button>
+        </div>
+        <div>
+          <button id="sevenBtn" class="number-btn" value="7">7</button>
+          <button id="eightBtn" class="number-btn" value="8">8</button>
+          <button id="nineBtn" class="number-btn" value="9">9</button>
+          <button id="divisionBtn" class="operator-btn" value="÷">÷</button>
+        </div>
+        <div>
+          <button id="fourBtn" class="number-btn" value="4">4</button>
+          <button id="fiveBtn" class="number-btn" value="5">5</button>
+          <button id="sixBtn" class="number-btn" value="6">6</button>
+          <button id="multiplyBtn" class="operator-btn" value="x">x</button>
+        </div>
+        <div>
+          <button id="oneBtn" class="number-btn" value="1">1</button>
+          <button id="twoBtn" class="number-btn" value="2">2</button>
+          <button id="threeBtn" class="number-btn" value="3">3</button>
+          <button id="subtractBtn" class="operator-btn" value="-">-</button>
+        </div>
+        <div>
+          <button id="ceroBtn" class="number-btn" value="0">0</button>
+          <button id="dotBtn" class="decimal-btn" value=".">.</button>
+          <button id="equalsBtn" class="equals-btn" value="=">=</button>
+          <button id="sumBtn" class="operator-btn" value="+">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="memory-display">
+        <p>No Memory</p>
+      </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

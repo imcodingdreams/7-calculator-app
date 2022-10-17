@@ -1,0 +1,100 @@
+body {
+  margin-left: 40px;
+  padding: 0;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button {
+  height: 55px;
+  width: 55px;
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+.ce-container {
+  margin-top: 15px;
+  display: flex;
+  padding-right: 35px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.display-int-container{
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  margin: 2px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+.calculator-container {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.calculator-container-2 {
+  height: 425px;
+  width: 280px;
+  border-right: 3px solid #000000;
+  border-left: 7px solid #000000;
+  border-top: 7px solid #000000;
+  border-bottom: 3px solid #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 30px;
+  margin: 0px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #717f93, #ffffff);
+}
+
+.int-display-container {
+  display: flex;
+  font-size: 35px;
+}
+
+.memory-btns-container button {
+  background: linear-gradient(45deg, #8b9bb8, #97ef40);
+}
+
+.ce-btn {
+  background: linear-gradient(45deg, #8b9bb8, #40a9ef);
+}
+
+.number-btn, .decimal-btn {
+  background: linear-gradient(45deg, #8b9bb8, #ffffff);
+}
+
+.operator-btn {
+  background: linear-gradient(45deg, #8b9bb8, #e157f3);
+  font-size: 18px;
+}
+
+.equals-btn {
+  background: linear-gradient(45deg, #8b9bb8, #31efe2);
+}
+
+.decimal-btn {
+  font-size: 20px;
+}
+
+.ce-display-container p {
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+
+.math-operation-display {
+  display: flex;
+  font-size: 20px;
+  max-height: 30px;
+  padding-bottom: 15px;
+  padding-top: 30px;
+}
