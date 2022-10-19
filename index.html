@@ -18,14 +18,13 @@
   </header>
   <div class="calculator-container">
     <div class="calculator-container-2">
-      <div id="ceBtnContainer" class="ce-container">
-        <div>
-          <button id="ceBtn" class="ce-btn">CE</button>
+      <div class="display-container">
+        <div id="ceBtnContainer" class="ce-container">
+          <!-- <div> -->
+            <button id="ceBtn" class="ce-btn" value ="0">CE</button>
         </div>
-        <div id="intDisplayContainer" class="int-display-container">
-          <div id="calcDisplayFirstOperand"></div>
-          <div id="calcDisplayOperator"></div>
-          <div id="calcDisplaySecondOperand"></div>
+        <div class="display-container-2">
+            <p id="display">0</p>
         </div>
       </div>
       <div class="btns-container">
@@ -55,8 +54,8 @@
         </div>
         <div>
           <button id="ceroBtn" class="number-btn" value="0">0</button>
-          <button id="dotBtn" class="decimal-btn" value=".">.</button>
-          <button id="equalsBtn" class="equals-btn" value="=">=</button>
+          <button id="decimalBtn" class="number-btn" value=".">.</button>
+          <button id="equalsBtn" class="equals-btn" onclick="result()" value="">=</button>
           <button id="sumBtn" class="operator-btn" value="+">+</button>
         </div>
       </div>
