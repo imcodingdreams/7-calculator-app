@@ -12,8 +12,9 @@ const display = document.querySelector('#display');
 // const mReCallBtn = document.querySelectorAll('#mReCallBtn');
 // const mClearBtn = document.querySelectorAll('#mClearBtn');
 const memoryBtns = document.querySelectorAll('.memory-btn');
-const firstOperandDiv = document.querySelectorAll('#firstOperand')
-const secondOperandDiv = document.querySelectorAll('#secondOperand')
+let firstOperandDiv = document.querySelectorAll('#firstOperand');
+let secondOperandDiv = document.querySelectorAll('#secondOperand');
+
 
 let firstOperand = null;
 let operator = null;

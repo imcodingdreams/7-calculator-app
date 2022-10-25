@@ -114,7 +114,9 @@ button {
 .math-operation-display {
   display: flex;
   font-size: 20px;
-  max-height: 30px;
+  height: 15px;
   padding-bottom: 15px;
   padding-top: 30px;
+  margin-left: 5px;
+
 }
