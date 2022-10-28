@@ -23,37 +23,56 @@ let decimalDotPresent = false;
 
 numberBtns.forEach(function (button) {
   button.addEventListener("click", () => {
-    if (firstOperand === null && operator === null) {
+    if ((firstOperand === null) && (operator === null) && (secondOperand === null)) {
       firstOperand = button.value;
       firstOperandDiv.innerText = firstOperand;
       display.innerText = firstOperand;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-    } else {
-      appendSibling = button.value;
-      firstOperandDiv.innerText = firstOperand += appendSibling;
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
+    } else if (!(firstOperand === null) && (operator === null) && (secondOperand === null)) {
+      appendSiblingFirstOperand = button.value;
+      firstOperandDiv.innerText = (firstOperand) += (appendSiblingFirstOperand);
       display.innerText = firstOperand;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-    }
-    if (!firstOperand === null && !operator === null) {
-    getSecondOperand(button);
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
+    } else if (!(firstOperand === null) && !(operator === null) && (secondOperand === null)) {
+      secondOperand = button.value;
+      secondOperandDiv.innerText = secondOperand;
+      display.innerText = secondOperand;
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
+    } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
+      appendSiblingSecondOperand = button.value;
+      secondOperandDiv.innerText = (secondOperand) += (appendSiblingSecondOperand);
+      display.innerText = secondOperand;
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
+    // } else if (firstOperand === "." && !decimalDotPresent) {
+    // decimalDotPresent = true;
+    // } else if (firstOperand.textContent "." && decimalDotPresent) {
+    //   return;
+    // } else if (display.innerText === "0") {
+    // display.innerText = "";
+    // decimalDotPresent = false;
+    // }
+      return;
     }
   })
 });
 
-function getSecondOperand(button) {
-    decimalDotPresent = true;
-    secondOperand = button.value;
-    secondOperandDiv.innerText = secondOperand;
-    display.innerText = secondOperand;
-    console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-};
-// function getSecondOperand(button) {
-// // if (!firstOperand === null && operator === null && secondOperand === null) {
-//     secondOperand = button.value;
-//     secondOperandDiv.innerText = secondOperand;
-//     display.innerText = secondOperand;
-//     console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-//   // }
+
+// function appendSibling() {
+//   if (!(firstOperand === null) && (operator === null) && (secondOperand === null)) {
+//       appendSiblingFirstOperand = button.value;
+//       firstOperandDiv.innerText = (firstOperand) += (appendSiblingFirstOperand);
+//       display.innerText = firstOperand;
+//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+//   } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
+//       appendSiblingSecondOperand = button.value;
+//       secondOperandDiv.innerText = (secondOperand) += (appendSiblingSecondOperand);
+//       display.innerText = secondOperand;
+//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+//   }
 // };
 
 //OPERATORS FUNCTION
@@ -66,12 +85,18 @@ operatorBtns.forEach(function (button) {
       operator = button.value;
       operatorDiv.innerText = operator;
     }
-    console.log(
-      `firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`
-    );
+    if (!(result === null)) {
+      secondOperand = null;
+      secondOperandDiv.innerText = "";
+      firstOperand = result;
+      firstOperandDiv.innerText = firstOperand;
+      operator = button.value;
+      operator.innerText = operator;
+      
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
+    }
   });
-  // operatorDiv.innerText = "";
-  // secondOperandDiv.innerHTML = "";
 });
 
 //CLEAR FUNCTION
@@ -85,6 +110,7 @@ ceBtn.forEach(function (button) {
     firstOperand = null;
     operator = null;
     secondOperand = null;
+
     console.log(button.value);
     return;
   });
@@ -94,127 +120,41 @@ ceBtn.forEach(function (button) {
 
 equalsBtn.forEach(function (button) {
   button.addEventListener("click", () => {
-    firstOperand = parseInt(firstOperand);
-    secondOperand = parseInt(secondOperand);
+    firstOperand = Number(firstOperand);
+    secondOperand = Number(secondOperand);
     if (operator === "÷") {
       result = firstOperand / secondOperand;
-      display.innerText = result;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+      display.innerText = (+result.toFixed(4));
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
       return;
     } else if (operator === "x") {
       result = firstOperand * secondOperand;
-      display.innerText = result;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+      display.innerText = (+result.toFixed(4));
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
       return;
     } else if (operator === "-") {
       result = firstOperand - secondOperand;
-      display.innerText = result;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+      display.innerText = (+result.toFixed(4));
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
       return;
     } else if (operator === "+") {
       result = firstOperand + secondOperand;
-      display.innerText = result;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-    }
+      display.innerText = (+result.toFixed(4));
+      console.log(
+      `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}`);
     firstOperand = null;
     operator = null;
     secondOperand = null;
     return;
-      // return secondOperand;
+    }
   });
 });
-
-
-function appendSibling() {
-  if (!(firstOperand === null) && (operator === null) && (secondOperand === null)) {
-      appendSibling = button.value;
-      firstOperandDiv.innerText = firstOperand += appendSibling;
-      display.innerText = firstOperand;
-      console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-  } else if ((!(firstOperand === null) && !(operator === null) && (!secondOperand === null))) {
-      appendSibling = button.value;
-      firstOperandDiv.innerText = firstOperand += appendSibling;
-      display.innerText = firstOperand;
-  }
-}
-
-//After pressing the + the firstOperand have to change to "1"
-// Update them after I press the buttons
-// Make firstOperand a sring to append
-// Display maximum numbers
-
-//After clicking the equalsBtn:
-//secondOperand = null;
-// If user clicks operatorBtn
-// Once the user clicks any operatorBtn
-// operatorBtn= button.value
-
-
-// firstOperandDiv.innerText = firstOperand
-// secondOperand = button.value
-
-
-// TEST CASE: 2 + 3 = 5 
-
-// STEP 1: Press 2 button
-// EXPECTED: Show 2 in the display
-// ACTUAL: ???
-
-// STEP 2: Press + button
-// EXPECTED: Show 2 in the display
-// ACTUAL: ???
-
-// STEP 3: Press 3 button
-// EXPECTED: Show 3 in the display
-// ACTUAL: ???
-
-// STEP 4: Press = button
-// EXPECTED: Show 5 in the display
-// ACTUAL: ???
-
 
 // memoryBtns.forEach(function(button) {
 //   button.addEventListener("click", () => {
 //     console.log("You clicked a memory-btn");
 //   })
 // });
-
-//After pressing the + the firstOperand have to change to "1"
-// Update them after I press the buttons
-// Make firstOperand a sring to append
-// Display maximum numbers
-
-//NUMBERS BUTTONS
-
-//else {
-    // secondOperand = button.value;
-    // }
-
-    // if (firstOperand === "." && !decimalDotPresent) {
-    // decimalDotPresent = true;
-    // } else if (firstOperand === "." && decimalDotPresent) {
-    //   return;
-    // } else if (display.innerText === "0") {
-    // display.innerText = "";
-    // decimalDotPresent = false;
-    // }
-    // firstOperand = e.target.innerText;
-    // firstOperand.innerText += firstOperand;
-    // display.innerText += firstOperand;
-    // console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-    // console.log(`secondOperand: ${secondOperand}`);
-    // console.log(`operator: ${operator}`);
-
-    // OPERATOR BUTTONS
-    // decimalDotPresent = false;
-    // if (display.innerText === "0") {
-    //   return;
-    // } else if (display.textContent.includes("÷") ||
-    // display.textContent.includes("x") ||
-    // display.textContent.includes("-") ||
-    // display.textContent.includes("+")) {
-    //   return;
-    // }
-    // //mathOperationDisplay.innerText += operator;
-    // display.innerText = firstOperand;
-    // firstOperandDiv.innerText += operator;
