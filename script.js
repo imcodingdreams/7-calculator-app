@@ -3,23 +3,22 @@ const operatorBtns = document.querySelectorAll(".operator-btn");
 const ceBtn = document.querySelectorAll(".ce-btn");
 const equalsBtn = document.querySelectorAll(".equals-btn");
 let display = document.querySelector("#display");
-// const mAddBtn = document.querySelectorAll('#mAddBtn');
-// const mSubtBtn = document.querySelectorAll('#mSubtBtn');
-// const mReCallBtn = document.querySelectorAll('#mReCallBtn');
-// const mClearBtn = document.querySelectorAll('#mClearBtn');
-const memoryBtns = document.querySelectorAll(".memory-btn");
+let mAddBtn = document.querySelectorAll('#mAddBtn');
+let mSubtBtn = document.querySelectorAll('#mSubtBtn');
+let mReCallBtn = document.querySelectorAll('#mReCallBtn');
+let mClearBtn = document.querySelectorAll('#mClearBtn');
+let memoryBtns = document.querySelectorAll(".memory-btn");
+let memoryDisplay = document.querySelector('#memoryDisplay');
 let firstOperandDiv = document.querySelector("#firstOperand");
 let operatorDiv = document.querySelector("#operator");
 let secondOperandDiv = document.querySelector("#secondOperand");
-// let mathOperationDisplay = document.querySelector(".mathOperationDisplay");
 
 let firstOperand = null;
 let operator = null;
 let secondOperand = null;
 let result = null;
 let decimalDotPresent = false;
-
-//NUMBER BOTTONS FUNCTION
+let memoryValue = null;
 
 numberBtns.forEach(function (button) {
   button.addEventListener("click", () => {
@@ -52,39 +51,9 @@ numberBtns.forEach(function (button) {
       display.innerText = secondOperand;
       console.log(
       `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}, result: ${result}`);
-    // } else if (display.innerText === "0") {
-    //   display.innerText = "";
-    //   decimalDotPresent = true;
-    // }
       }
   });
 });
-
-// function decimalPresent() {
-
-//   for (i = 0; i )
-//   // if (!(firstOperandDiv.textContent.includes("."))) {
-//   //   decimalDotPresent = false;
-//   // } else if (firstOperandDiv.textContent.includes(".")) {
-//   //   decimalDotPresent = true;
-//   // }
-// }
-
-// function appendSibling() {
-//   if (!(firstOperand === null) && (operator === null) && (secondOperand === null)) {
-//       appendSiblingFirstOperand = button.value;
-//       firstOperandDiv.innerText = (firstOperand) += (appendSiblingFirstOperand);
-//       display.innerText = firstOperand;
-//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-//   } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
-//       appendSiblingSecondOperand = button.value;
-//       secondOperandDiv.innerText = (secondOperand) += (appendSiblingSecondOperand);
-//       display.innerText = secondOperand;
-//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
-//   }
-// };
-
-//OPERATORS FUNCTION
 
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", () => {
@@ -128,8 +97,6 @@ operatorBtns.forEach(function (button) {
   });
 });
 
-//CLEAR FUNCTION
-
 ceBtn.forEach(function (button) {
   button.addEventListener("click", () => {
     firstOperandDiv.innerText = "";
@@ -145,8 +112,6 @@ ceBtn.forEach(function (button) {
   });
 });
 
-// EQUALS BUTTON FUNCTION
-
 function operandsAndOperatorNull() {
   firstOperand = null;
   operator = null;
@@ -154,7 +119,7 @@ function operandsAndOperatorNull() {
 }
 
 function displayMaxPlaces() {
-display.innerText = (+result.toFixed(4));
+  display.innerText = (+result.toFixed(4));
 } 
 
 function convertToNumbers() {
@@ -197,11 +162,56 @@ equalsBtn.forEach(function (button) {
   result = null;
 });
 
+memoryBtns.forEach(function(button) {
+  button.addEventListener("click", () => {
+    if (button.id == "mAddBtn" && memoryValue === null) {
+      memoryValue = result;
+      memoryDisplay.innerText = memoryValue;
+      console.log("You clicked M+ btn");
+    } else if (button.id == "mAddBtn" && !(memoryValue === "null")) {
+      memoryValue = memoryValue + result;
+      memoryDisplay.innerText = memoryValue;
+      console.log("You clicked M+ btn");
+    } else if (button.id == "mSubtBtn" && memoryValue === null) {
+      console.log("You clicked M- btn");
+      return;
+    } else if (button.id == "mSubtBtn" && !(memoryValue === "null")) {
+      memoryValue = memoryValue - result;
+      memoryDisplay.innerText = memoryValue;
+      console.log("You clicked M+ btn");
+    } else if (button.id == "mReCallBtn") {
+      display.innerText = memoryValue;
+      console.log("You clicked MR btn")
+    } else if (button.id == "mClearBtn") {
+      memoryDisplay.innerText = "No memory";
+      console.log("You clicked MC btn")
+    }
+  })
+});
+
+// function decimalPresent() {
+
+//   for (i = 0; i )
+//   // if (!(firstOperandDiv.textContent.includes("."))) {
+//   //   decimalDotPresent = false;
+//   // } else if (firstOperandDiv.textContent.includes(".")) {
+//   //   decimalDotPresent = true;
+//   // }
+// }
+
+// function appendSibling() {
+//   if (!(firstOperand === null) && (operator === null) && (secondOperand === null)) {
+//       appendSiblingFirstOperand = button.value;
+//       firstOperandDiv.innerText = (firstOperand) += (appendSiblingFirstOperand);
+//       display.innerText = firstOperand;
+//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+//   } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
+//       appendSiblingSecondOperand = button.value;
+//       secondOperandDiv.innerText = (secondOperand) += (appendSiblingSecondOperand);
+//       display.innerText = secondOperand;
+//       console.log(`firstOperand: ${firstOperand}, secondOperand: ${secondOperand}, operator: ${operator}`);
+//   }
+// };
 
 
 
-// memoryBtns.forEach(function(button) {
-//   button.addEventListener("click", () => {
-//     console.log("You clicked a memory-btn");
-//   })
-// });
