@@ -118,12 +118,4 @@ button {
   padding-bottom: 15px;
   padding-top: 30px;
   margin-left: 5px;
-
-}
-
-function decimalPresent() {
-if (!(firstOperandDiv.textContent.includes("."))) {
-    decimalDotPresent = false;
-} else if (firstOperandDiv.textContent.includes(".")) {
-    decimalDotPresent = true; 
 }
