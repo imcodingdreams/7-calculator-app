@@ -47,7 +47,6 @@ decimalBtn.forEach(function (button) {
       secondOperand += button.value;
       display.innerText = secondOperand;
       secondOperandDiv.innerText = secondOperand;
-      secondOperandDiv.innerText = secondOperand;
       console.log(
         `firstOperand: ${firstOperand}, operator: ${operator}, secondOperand: ${secondOperand}, result: ${result}`);
     }
