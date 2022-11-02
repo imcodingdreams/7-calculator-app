@@ -9,7 +9,7 @@ Click [here](https://imcodingdreams.github.io/calculator-app/) to see it live!
 ![Image link](/images/calculator-app-snip.png)
 
 ### SUMMARY
-This is a simple calculator app, where the user can add, subtract, multiply and divide operands. The calculator also has a memmory to store values for more complex calculations. In this project I combine HTML, CSS and JavaScript.
+This is a simple calculator app, where the user can add, subtract, multiply and divide operands. The calculator also has a memmory to store values for more complex calculations. In this project I combined HTML, CSS and JavaScript.
 
 ### AUTHOR
 Nayka Vallejo - _Software Developer_
