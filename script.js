@@ -62,6 +62,7 @@ numberBtns.forEach(function (button) {
       secondOperand = null;
       secondOperandDiv.innerText = "";
       result = null
+      console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
     } else if (!(firstOperand === null) && operator === null && secondOperand === null) {
       appendSiblingFirstOperand = button.value;
       firstOperandDiv.innerText = (firstOperand) += (appendSiblingFirstOperand);
@@ -70,6 +71,7 @@ numberBtns.forEach(function (button) {
       secondOperand = button.value;
       secondOperandDiv.innerText = secondOperand;
       display.innerText = secondOperand;
+      console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
     } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
       appendSiblingSecondOperand = button.value;
       secondOperandDiv.innerText = (secondOperand) += (appendSiblingSecondOperand);
@@ -80,37 +82,40 @@ numberBtns.forEach(function (button) {
 
 operatorBtns.forEach(function (button) {
   button.addEventListener("click", () => {
-    if (firstOperand === 0 && secondOperand === 0 || firstOperand === ".") {
+    if (firstOperand === 0 && secondOperand === 0 || firstOperand === "." || firstOperand === null && result === null) {
       return;
-    }
-    if (firstOperand === null && result === null) {
-      return;
-    } else if (!(firstOperand === null) && result === null) {
+    } else if (firstOperand === null && operator === null && secondOperand === null) {
+      firstOperand = button.value;
+      firstOperandDiv.innerText = firstOperand;
+    } else if (!(firstOperand === null) && operator === null && secondOperand === null) {
       operator = button.value;
       operatorDiv.innerText = operator;
-    }
-    if (!(result === null)) {
-      operator = button.value;
-      operatorDiv.innerText = operator;
-      firstOperand = result;
-      firstOperandDiv.innerText = (+firstOperand.toFixed(4));
-      secondOperandDiv.innerText = "";
-      result = null;
-    if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null) && result === null) {
-      operator = button.value;
-      operatorDiv.innerText = operator;
+      console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
+    } else if (!(firstOperand === null) && !(operator === null) &&!(secondOperand === null)) {
+      getResult();
       firstOperand = result;
       firstOperandDiv.innerText = firstOperand;
       secondOperandDiv.innerText = "";
-    } 
-    if (firstOperand === null && operator === null && secondOperand === null && !(result === null)) {
-      firstOperand = button.value;
-      operatorDiv.innerText = "";
-      secondOperandDiv.innerText = "";
-      } 
+      operator = button.value;
+      operatorDiv.innerText = operator;
     }
   });
 });
+
+function getResult() {
+  if (operator === "÷") {
+    result = firstOperand / secondOperand;
+  } else if (operator === "x") {
+    result = firstOperand * secondOperand;
+  } else if (operator === "-") {
+    result = firstOperand - secondOperand;
+  } else if (operator === "+") {
+    result = firstOperand + secondOperand;
+  }
+  convertToNumbers();
+  displayMaxPlaces();
+  operandsAndOperatorNull();
+};
 
 ceBtn.forEach(function (button) {
   button.addEventListener("click", () => {
@@ -120,6 +125,7 @@ ceBtn.forEach(function (button) {
     display.innerText = "0";
     operandsAndOperatorNull ();
     result = null;
+    console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
     return;
   });
 });
@@ -135,20 +141,10 @@ function convertToNumbers() {
 
 equalsBtn.forEach(function (button) {
   button.addEventListener("click", () => {
-    if (operator === "÷") {
-      result = firstOperand / secondOperand;
-    } else if (operator === "x") {
-      result = firstOperand * secondOperand;
-    } else if (operator === "-") {
-      result = firstOperand - secondOperand;
-    } else if (operator === "+") {
-      result = firstOperand + secondOperand;
-    }
-    convertToNumbers();
-    displayMaxPlaces();
-    operandsAndOperatorNull();
+    getResult();
   });
 });
+
 
 memoryBtns.forEach(function(button) {
   button.addEventListener("click", () => {
