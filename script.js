@@ -22,7 +22,7 @@ let memoryValue = null;
 
 decimalBtn.forEach(function (button) {
   button.addEventListener("click", () => {
-    if (firstOperand === null && !(firstOperandDiv.textContent.includes('.')) && secondOperand === null && operator === null && result === null) {
+    if (firstOperand === null && !(firstOperandDiv.textContent.includes('.')) && secondOperand === null && operator === null && !(result === null)) {
       firstOperand = button.value;
       firstOperandDiv.innerText = firstOperand;
       display.innerText = firstOperand;
@@ -84,14 +84,21 @@ operatorBtns.forEach(function (button) {
   button.addEventListener("click", () => {
     if (firstOperand === 0 && secondOperand === 0 || firstOperand === "." || firstOperand === null && result === null) {
       return;
-    } else if (firstOperand === null && operator === null && secondOperand === null) {
+    } else if (firstOperand === null && operator === null && secondOperand === null && result === null) {
       firstOperand = button.value;
       firstOperandDiv.innerText = firstOperand;
     } else if (!(firstOperand === null) && operator === null && secondOperand === null) {
       operator = button.value;
       operatorDiv.innerText = operator;
       console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
-    } else if (!(firstOperand === null) && !(operator === null) &&!(secondOperand === null)) {
+    } else if (!(firstOperand === null) && !(operator === null) && !(secondOperand === null)) {
+      getResult();
+      firstOperand = result;
+      firstOperandDiv.innerText = firstOperand;
+      secondOperandDiv.innerText = "";
+      operator = button.value;
+      operatorDiv.innerText = operator;
+    } else if (firstOperand === null && operator === null && secondOperand === null && !(result === null)) {
       getResult();
       firstOperand = result;
       firstOperandDiv.innerText = firstOperand;
@@ -103,16 +110,15 @@ operatorBtns.forEach(function (button) {
 });
 
 function getResult() {
-  if (operator === "÷") {
-    result = firstOperand / secondOperand;
-  } else if (operator === "x") {
-    result = firstOperand * secondOperand;
-  } else if (operator === "-") {
-    result = firstOperand - secondOperand;
-  } else if (operator === "+") {
-    result = firstOperand + secondOperand;
-  }
-  convertToNumbers();
+    if (operator === "÷") {
+      result = convertToNumbers(firstOperand) / convertToNumbers(secondOperand);
+    } else if (operator === "x") {
+      result = convertToNumbers(firstOperand) * convertToNumbers(secondOperand);
+    } else if (operator === "-") {
+      result = convertToNumbers(firstOperand) - convertToNumbers(secondOperand);
+    } else if (operator === "+") {
+      result = convertToNumbers(firstOperand) + convertToNumbers(secondOperand);
+    }
   displayMaxPlaces();
   operandsAndOperatorNull();
 };
@@ -131,40 +137,44 @@ ceBtn.forEach(function (button) {
 });
 
 function displayMaxPlaces() {
-  display.innerText = (+result.toFixed(4));
+  result = (+result.toFixed(4));
+  display.innerText = result;
 }; 
 
-function convertToNumbers() {
-  firstOperand = Number(firstOperand);
-  secondOperand = Number(secondOperand);
+function convertToNumbers(value) {
+  return Number(value);
 };
 
 equalsBtn.forEach(function (button) {
   button.addEventListener("click", () => {
     getResult();
+    console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
   });
 });
 
-
 memoryBtns.forEach(function(button) {
   button.addEventListener("click", () => {
-    result = (+result.toFixed(4));
-    if (button.id == "mAddBtn" && memoryValue === null) {
-      memoryValue = result;
-      memoryDisplay.innerText = memoryValue;
-    } else if (button.id == "mAddBtn" && !(memoryValue === null)) {
-      memoryValue = memoryValue + result;
-      memoryDisplay.innerText = memoryValue;
-    } else if (button.id == "mSubtBtn" && memoryValue === null) {
-      return;
-    } else if (button.id == "mSubtBtn" && !(memoryValue === null)) {
-      memoryValue = memoryValue - result;
-      memoryDisplay.innerText = memoryValue;
-    } else if (button.id == "mReCallBtn") {
-      display.innerText = memoryValue;
-    } else if (button.id == "mClearBtn") {
-      memoryValue = null;
-      memoryDisplay.innerText = "No memory";
-    }
+      if (button.id == "mAddBtn" && !(result === null) && memoryValue === null) {
+        memoryValue = result;
+        memoryDisplay.innerText = result;
+      } else if (button.id == "mAddBtn" && !(memoryValue === null)) {
+        memoryValue = memoryValue + result;
+        memoryDisplay.innerText = memoryValue;
+      } else if (button.id == "mAddBtn" && result === null) {
+        console.log(`FirstOperand: ${firstOperand}, Operator: ${operator}, SecondOperand: ${secondOperand}, Result: ${result} , MemoryValue: ${memoryValue}`)
+        return;
+      } else if (button.id == "mSubtBtn" && memoryValue === null) {
+        return;
+      } else if (button.id == "mSubtBtn" && !(memoryValue === null)) {
+        memoryValue = memoryValue - result;
+        memoryDisplay.innerText = memoryValue;
+      } else if (button.id == "mReCallBtn") {
+        if (!(memoryValue === null)) {
+        display.innerText = memoryValue;
+        }
+      } else if (button.id == "mClearBtn") {
+        memoryValue = null;
+        memoryDisplay.innerText = "No memory";
+      }
   });
 });
